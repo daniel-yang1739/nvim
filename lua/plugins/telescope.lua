@@ -10,6 +10,14 @@ return {
             return {
                 defaults = {
                     file_ignore_patterns = { "__pycache__", "node_modules", ".git" },
+                    layout_config = {
+                        width = 0.6,
+                        height = 0.5,
+                    },
+                    --  disable file preview
+                    preview = {
+                        hide_on_startup = true,
+                    },
                 }
             }
         end
