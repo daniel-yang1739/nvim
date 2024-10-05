@@ -7,6 +7,7 @@ local buffer = vim.b
 local global = vim.g
 
 -- Globol Settings --
+option.showmode = false
 option.tabstop = 4
 option.shiftwidth = 4
 option.expandtab = true
