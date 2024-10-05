@@ -30,6 +30,7 @@ option.swapfile = false
 option.backup = false
 option.updatetime = 50
 option.exrc = true
+option.wrap = true
 option.splitright = true
 
 -- Buffer Settings --

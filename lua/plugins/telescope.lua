@@ -9,7 +9,7 @@ return {
         opts = function()
             return {
                 defaults = {
-                    file_ignore_patterns = { "node_modules", ".git" },
+                    file_ignore_patterns = { "__pycache__", "node_modules", ".git" },
                 }
             }
         end
