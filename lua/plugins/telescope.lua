@@ -4,7 +4,7 @@ return {
         dependencies = { 'nvim-lua/plenary.nvim' },
         cmd = "Telescope",
         keys = {
-            { "<C-p>", "<cmd>Telescope find_files<cr>", desc = "find files" }
+            { "<C-p>", "<cmd>Telescope find_files disable_devicons=true<cr>", desc = "find files" }
         },
         opts = function()
             return {

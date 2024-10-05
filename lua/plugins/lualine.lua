@@ -1,7 +1,6 @@
 return {
     {
         'nvim-lualine/lualine.nvim',
-        dependencies = { 'nvim-tree/nvim-web-devicons' },
         opts = function()
             require('lualine').setup {
                 options = {
@@ -41,7 +40,7 @@ return {
                 tabline = {},
                 winbar = {},
                 inactive_winbar = {},
-                extensions = { 'nvim-tree' },
+                extensions = {},
                 symbols = {},
             }
         end,
