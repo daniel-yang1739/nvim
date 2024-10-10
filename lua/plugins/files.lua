@@ -1,6 +1,36 @@
-
 return {
     {
+        -- File Explorer --
+        "preservim/nerdtree",
+        lazy = false,
+        keys = {
+            { "<C-n>", "<cmd>NERDTreeToggle<cr>", desc = "nerdtree toggle" },
+        },
+        config = function()
+            -- Read the argument stdin
+            vim.api.nvim_create_autocmd("StdinReadPre", {
+                callback = function()
+                    vim.g.std_in = true
+                end,
+            })
+
+            -- open NERDTree if no specified file when open nvim
+            vim.api.nvim_create_autocmd("VimEnter", {
+                callback = function()
+                    if vim.fn.argc() == 0 and vim.g.std_in == nil then
+                        vim.defer_fn(function()
+                            vim.cmd("NERDTree")
+                        end, 10)
+                    end
+                end,
+            })
+
+            -- Close NERDTree when open a file
+            vim.g.NERDTreeQuitOnOpen = true
+        end
+    },
+    {
+        -- Find Files --
         "kien/ctrlp.vim",
         config = function()
             -- Set wildignore patterns

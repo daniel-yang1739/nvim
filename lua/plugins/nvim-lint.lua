@@ -4,7 +4,6 @@ return {
         events = { 'BufWritePost', 'BufReadPost', 'InsertLeave' },
         linters_by_ft = {
             javascript = { 'eslint' },
-            typescript = { 'eslint' },
             python = { 'flake8' },
         },
         linters = {},
