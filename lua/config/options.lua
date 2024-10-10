@@ -8,6 +8,7 @@ local global = vim.g
 
 -- Globol Settings --
 option.showmode = false
+option.backspace = { "indent", "eol", "start" }
 option.tabstop = 4
 option.shiftwidth = 4
 option.expandtab = true
