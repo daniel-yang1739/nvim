@@ -4,7 +4,7 @@ return {
         "preservim/nerdtree",
         lazy = false,
         keys = {
-            { "<C-n>", "<cmd>NERDTreeToggle<cr>", desc = "nerdtree toggle" },
+            { "<leader>n", "<cmd>NERDTreeToggle<cr>", desc = "nerdtree toggle" },
         },
         config = function()
             -- Read the argument stdin
