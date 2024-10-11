@@ -4,7 +4,6 @@
 
 local option = vim.opt
 local buffer = vim.b
-local global = vim.g
 
 -- Globol Settings --
 option.showmode = false
@@ -36,6 +35,3 @@ option.splitright = true
 
 -- Buffer Settings --
 buffer.fileenconding = "utf-8"
-
--- Global Settings --
-global.mapleader = ","
