@@ -1,9 +1,9 @@
-local global = vim.g
 -- Keymaps are automatically loaded on the VeryLazy event
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 -- Add any additional keymaps here
 
 -- Global Leader Key --
+local global = vim.g
 global.mapleader = ","
 
 -- Key Mappings --
