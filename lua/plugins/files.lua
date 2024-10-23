@@ -38,7 +38,7 @@ return {
 
             if vim.fn.executable('ag') then
                 -- Use Ag in CtrlP for listing files. Lightning fast and respects .gitignore
-                vim.g.ctrlp_user_command = 'ag %s -U --skip-vcs-ignores --ignore-dir=node_modules --ignore-dir=__pycache__ -l -g ""'
+                vim.g.ctrlp_user_command = 'ag %s --skip-vcs-ignores --ignore-dir=node_modules --ignore-dir=__pycache__ -l -g ""'
 
                 -- Set Ag as the grepprg
                 vim.o.grepprg = 'ag --nogroup --nocolor'

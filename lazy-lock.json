@@ -1,6 +1,7 @@
 {
   "copilot.vim": { "branch": "release", "commit": "782461159655b259cff10ecff05efa761e3d4764" },
   "ctrlp.vim": { "branch": "master", "commit": "564176f01d7f3f7f8ab452ff4e1f5314de7b0981" },
+  "gruvbox.nvim": { "branch": "main", "commit": "49d9c0b150ba70efcd831ec7b3cb8ee740067045" },
   "indent-blankline.nvim": { "branch": "master", "commit": "3af6493bf69e4a857a8b1fab36f333629d413a18" },
   "lazy.nvim": { "branch": "main", "commit": "077102c5bfc578693f12377846d427f49bc50076" },
   "lualine.nvim": { "branch": "master", "commit": "b431d228b7bbcdaea818bdc3e25b8cdbe861f056" },
