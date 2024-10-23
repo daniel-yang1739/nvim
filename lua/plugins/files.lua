@@ -31,7 +31,7 @@ return {
     },
     {
         -- Find Files --
-        "kien/ctrlp.vim",
+        "ctrlpvim/ctrlp.vim",
         config = function()
             -- Set wildignore patterns
             vim.o.wildignore = vim.o.wildignore .. '/tmp/,.so,.swp,.zip,.,env,*.pyc'
