@@ -13,9 +13,6 @@ keymap.set({ "n", "i", "v" }, "<Right>", "<Nop>")
 keymap.set({ "n", "i", "v" }, "<Up>", "<Nop>")
 keymap.set({ "n", "i", "v" }, "<Down>", "<Nop>")
 
-keymap.set("n", "<S-h>", "gT")
-keymap.set("n", "<S-l>", "gt")
-
 keymap.set("v", "<leader>y", '"+y')
 
 keymap.set('n', "<leader>'", "viw<esc>a'<esc>bi'<esc>el")

@@ -1,33 +1,26 @@
 return {
     {
         -- File Explorer --
-        "preservim/nerdtree",
+        "nvim-tree/nvim-tree.lua",
+        version = "*",
         lazy = false,
-        keys = {
-            { "<leader>n", "<cmd>NERDTreeToggle<cr>", desc = "nerdtree toggle" },
+        dependencies = {
+            "nvim-tree/nvim-web-devicons",
         },
+        init = function()
+            local keymap = vim.api.nvim_set_keymap
+            local opts = { noremap = true, silent = true }
+            keymap('n', '<leader>n', '<cmd>NvimTreeToggle<cr>', opts)
+        end,
         config = function()
-            -- Read the argument stdin
-            vim.api.nvim_create_autocmd("StdinReadPre", {
-                callback = function()
-                    vim.g.std_in = true
-                end,
+            require("nvim-tree").setup({
+                actions = {
+                    open_file = {
+                        quit_on_open = true,
+                    },
+                },
             })
-
-            -- open NERDTree if no specified file when open nvim
-            vim.api.nvim_create_autocmd("VimEnter", {
-                callback = function()
-                    if vim.fn.argc() == 0 and vim.g.std_in == nil then
-                        vim.defer_fn(function()
-                            vim.cmd("NERDTree")
-                        end, 10)
-                    end
-                end,
-            })
-
-            -- Close NERDTree when open a file
-            vim.g.NERDTreeQuitOnOpen = true
-        end
+        end,
     },
     {
         -- Find Files --
@@ -45,8 +38,8 @@ return {
             end
         end
     },
---[[  disable telescope
     {
+        --[[  disable telescope
         'nvim-telescope/telescope.nvim', tag = '0.1.8',
         dependencies = { 'nvim-lua/plenary.nvim' },
         cmd = "Telescope",
@@ -68,6 +61,6 @@ return {
                 }
             }
         end
+        ]]--
     },
-]]--
 }
