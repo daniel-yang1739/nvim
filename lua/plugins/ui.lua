@@ -16,6 +16,7 @@ return {
                     ignore_focus = {},
                     always_divide_middle = true,
                     always_show_tabline = true,
+
                     globalstatus = false,
                     refresh = {
                         statusline = 100,
@@ -47,6 +48,7 @@ return {
         end,
     },
     {
+        --[[
         'romgrk/barbar.nvim',
         dependencies = {
             'lewis6991/gitsigns.nvim', -- OPTIONAL: for git status
@@ -89,5 +91,6 @@ return {
             -- …etc.
         },
         version = '^1.0.0', -- optional: only update when a new 1.x version is released
+        --]]
     },
 }

@@ -22,3 +22,6 @@ keymap.set('v', '<leader>"', '<esc>`>a"<esc>`<i"<esc>')
 
 keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+
+keymap.set("n", "H", "gT")
+keymap.set("n", "L", "gt")
