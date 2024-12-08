@@ -7,6 +7,14 @@ vim.cmd("language en_US")
 
 -- auto remove trailing whitespace on save --
 vim.api.nvim_create_autocmd("BufWritePre", {
-    pattern = "*",
-    command = "%s/\\s\\+$//e"
+  pattern = "*",
+  command = "%s/\\s\\+$//e"
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "lua",
+  callback = function()
+    vim.opt.shiftwidth = 2
+    vim.opt.tabstop = 2
+  end,
 })
