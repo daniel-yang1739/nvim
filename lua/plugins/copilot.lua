@@ -9,7 +9,7 @@ return {
           enabled = true,
           auto_trigger = true,
           keymap = {
-            accept = "<tab>",
+            accept = "<A-tab>",
             accept_word = "<A-w>",
             accept_line = "<A-l>",
           },
@@ -32,7 +32,19 @@ return {
     },
     build = "make",
     config = function()
-      local opts = { provider = "copilot" }
+      local opts = {
+        provider = "copilot",
+        windows = {
+          input ={
+            prefix = "",
+            height = 6,
+          },
+          ask = {
+            border = "rounded",
+            start_insert = true
+          },
+        },
+      }
       require("avante").setup(opts)
     end,
   },
