@@ -2,7 +2,7 @@ return {
     {
         "folke/tokyonight.nvim",
         config = function()
-            vim.cmd[[colorscheme tokyonight-storm]]
+            vim.cmd[[colorscheme tokyonight-night]]
         end
     },
     {
