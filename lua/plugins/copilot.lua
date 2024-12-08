@@ -20,14 +20,14 @@ return {
     {
         "yetone/avante.nvim",
         dependencies = {
-            "nvim-tree/nvim-web-devicons",
             "stevearc/dressing.nvim",
             "nvim-lua/plenary.nvim",
-            "muniftanjim/nui.nvim",
+            "MunifTanjim/nui.nvim",
+            "nvim-tree/nvim-web-devicons",
             {
-                "meanderingprogrammer/render-markdown.nvim",
-                opts = { file_types = { "markdown", "avante" } },
-                ft = { "markdown", "avante" },
+                "MeanderingProgrammer/render-markdown.nvim",
+                opts = { file_types = { "markdown", "Avante" } },
+                ft = { "markdown", "Avante" },
             },
         },
         build = "make",
