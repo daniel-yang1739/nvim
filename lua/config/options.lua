@@ -6,7 +6,6 @@ local option = vim.opt
 local buffer = vim.b
 
 -- Globol Settings --
--- option.foldmethod = "indent"
 option.autoindent = true
 option.autoread = true
 option.backspace = { "indent", "eol", "start" }
@@ -15,6 +14,7 @@ option.completeopt = { "menuone", "noselect" }
 option.cursorline = true
 option.expandtab = true
 option.exrc = true
+option.foldmethod = "indent"
 option.hlsearch = true
 option.ignorecase = true
 option.mouse = ""
