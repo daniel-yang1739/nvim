@@ -49,48 +49,32 @@ return {
   },
   {
     --[[
-    'romgrk/barbar.nvim',
+    "folke/noice.nvim",
+    event = "VeryLazy",
     dependencies = {
-      'lewis6991/gitsigns.nvim', -- OPTIONAL: for git status
-      'nvim-tree/nvim-web-devicons', -- OPTIONAL: for file icons
+      -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+      "MunifTanjim/nui.nvim",
     },
-    init = function()
-      vim.g.barbar_auto_setup = false
-
-      local keymap = vim.api.nvim_set_keymap
-      local opts = { noremap = true, silent = true }
-
-      keymap('n', '<A-,>', ':BufferPrevious<CR>', opts)
-      keymap('n', '<A-.>', ':BufferNext<CR>', opts)
-      keymap('n', '<A-<>', ':BufferMovePrevious<CR>', opts)
-      keymap('n', '<A->>', ':BufferMoveNext<CR>', opts)
-
-      keymap('n', '<A-1>', ':BufferGoto 1<CR>', opts)
-      keymap('n', '<A-2>', ':BufferGoto 2<CR>', opts)
-      keymap('n', '<A-3>', ':BufferGoto 3<CR>', opts)
-      keymap('n', '<A-4>', ':BufferGoto 4<CR>', opts)
-      keymap('n', '<A-5>', ':BufferGoto 5<CR>', opts)
-      keymap('n', '<A-6>', ':BufferGoto 6<CR>', opts)
-      keymap('n', '<A-7>', ':BufferGoto 7<CR>', opts)
-      keymap('n', '<A-8>', ':BufferGoto 8<CR>', opts)
-      keymap('n', '<A-9>', ':BufferLast<CR>', opts)
-
-      keymap('n', '<A-c>', ':BufferClose<CR>', opts)
-      keymap('n', '<A-C>', ':BufferCloseAllButCurrent<CR>', opts)
-
-      -- pin/unpin
-      keymap('n', '<A-p>', ':BufferPin<CR>', opts)
-
-      -- sort
-      keymap('n', '<A-o>', ':BufferOrderByDirectory<CR>', opts)
+    config = function()
+      require("noice").setup({
+        lsp = {
+          -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
+          override = {
+            ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+            ["vim.lsp.util.stylize_markdown"] = true,
+            ["cmp.entry.get_documentation"] = true, -- requires hrsh7th/nvim-cmp
+          },
+        },
+        -- you can enable a preset for easier configuration
+        presets = {
+          bottom_search = true, -- use a classic bottom cmdline for search
+          command_palette = true, -- position the cmdline and popupmenu together
+          long_message_to_split = true, -- long messages will be sent to a split
+          inc_rename = false, -- enables an input dialog for inc-rename.nvim
+          lsp_doc_border = false, -- add a border to hover docs and signature help
+        },
+      })
     end,
-    opts = {
-      -- lazy.nvim will automatically call setup for you. put your options here, anything missing will use the default:
-      -- animation = true,
-      -- insert_at_start = true,
-      -- …etc.
-    },
-    version = '^1.0.0', -- optional: only update when a new 1.x version is released
     --]]
   },
 }

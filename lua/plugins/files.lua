@@ -23,6 +23,50 @@ return {
     end,
   },
   {
+    'nvim-telescope/telescope.nvim', tag = '0.1.8',
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-tree/nvim-web-devicons",
+    },
+    cmd = "Telescope",
+    keys = {
+      { "<C-p>", "<cmd>Telescope find_files<cr>", desc = "find files" }
+    },
+    opts = function()
+      return {
+        defaults = {
+          layout_config = {
+            width = 0.6,
+            height = 0.5,
+          },
+          --  disable file preview
+          preview = {
+            hide_on_startup = true,
+          },
+        },
+        pickers = {
+          find_files = {
+            find_command = {
+              "ag",
+              "--silent",
+              "--nocolor",
+              "--follow",
+              "-g", "",
+              "--literal",
+              "--ignore",
+              ".git",
+              "--ignore",
+              "node_modules",
+              "--ignore",
+              "__pycache__",
+            },
+          },
+        },
+      }
+    end
+  },
+  {
+    --[[
     -- Find Files --
     "ctrlpvim/ctrlp.vim",
     config = function()
@@ -36,30 +80,6 @@ return {
         -- Set Ag as the grepprg
         vim.o.grepprg = 'ag --nogroup --nocolor'
       end
-    end
-  },
-  {
-    --[[  disable telescope
-    'nvim-telescope/telescope.nvim', tag = '0.1.8',
-    dependencies = { 'nvim-lua/plenary.nvim' },
-    cmd = "Telescope",
-    keys = {
-      { "<C-p>", "<cmd>Telescope find_files disable_devicons=true<cr>", desc = "find files" }
-    },
-    opts = function()
-      return {
-        defaults = {
-          file_ignore_patterns = { "__pycache__", "node_modules", ".git" },
-          layout_config = {
-            width = 0.6,
-            height = 0.5,
-          },
-          --  disable file preview
-          preview = {
-            hide_on_startup = true,
-          },
-        }
-      }
     end
     ]]--
   },
