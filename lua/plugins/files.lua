@@ -37,7 +37,7 @@ return {
         defaults = {
           layout_config = {
             width = 0.6,
-            height = 0.5,
+            height = 0.8,
           },
           --  disable file preview
           preview = {
