@@ -41,6 +41,10 @@ return {
     config = function()
       local opts = {
         provider = "copilot",
+        copilot = {
+          -- https://github.com/yetone/avante.nvim?tab=readme-ov-file#disable-tools
+          disable_tools = true,
+        },
         windows = {
           input ={
             prefix = "",
