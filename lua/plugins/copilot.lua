@@ -30,7 +30,6 @@ return {
       "nvim-lua/plenary.nvim",
       "MunifTanjim/nui.nvim",
       "nvim-tree/nvim-web-devicons",
-      "zbirenbaum/copilot.lua",
       {
         "MeanderingProgrammer/render-markdown.nvim",
         opts = { file_types = { "markdown", "Avante" } },
@@ -51,6 +50,9 @@ return {
             start_insert = true
           },
         },
+        behaviour = {
+          auto_suggestions = false,  -- https://github.com/yetone/avante.nvim/issues/1048#issuecomment-2581805180
+        }
       }
       require("avante").setup(opts)
     end,
