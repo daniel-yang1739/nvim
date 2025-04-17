@@ -9,5 +9,8 @@ return {
         }
       })
     end,
+  },
+  {
+    "easymotion/vim-easymotion",
   }
 }
