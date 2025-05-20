@@ -12,5 +12,15 @@ return {
   },
   {
     "easymotion/vim-easymotion",
+  },
+  {
+    "m4xshen/hardtime.nvim",
+    dependencies = { "MunifTanjim/nui.nvim" },
+    opts = {
+      enabled = false,
+    },
+    config = function(_, opts)
+      require("hardtime").setup(opts)
+    end,
   }
 }

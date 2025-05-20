@@ -30,7 +30,9 @@ return {
     },
     cmd = "Telescope",
     keys = {
-      { "<C-p>", "<cmd>Telescope find_files<cr>", desc = "find files" }
+      { "<C-p>", "<cmd>Telescope find_files<cr>", desc = "find files" },
+      { "<leader>p", "<cmd>Telescope find_files<cr>", desc = "find files" },
+      { "<leader>o", "<cmd>Telescope live_grep<cr>", desc = "live grep" }
     },
     opts = function()
       return {
@@ -45,6 +47,7 @@ return {
           },
         },
         pickers = {
+          --[[
           find_files = {
             find_command = {
               "ag",
@@ -61,6 +64,7 @@ return {
               "__pycache__",
             },
           },
+          ]]--
         },
       }
     end
