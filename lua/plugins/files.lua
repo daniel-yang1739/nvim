@@ -23,19 +23,17 @@ return {
             hide_on_startup = true,
           },
           file_ignore_patterns = {
-            "node_modules",
-            ".git/",
-            "__pycache__",
-            "local_data",
-            "cache",
-            "lib/materializecss/",
-            "lib/*-dist/",
+            "lib/materializecss",
+            "lib/*-dist",
           },
         },
         pickers = {
-          find_files = {
-            no_ignore = true,  -- no ignore files in .gitignore
-          },
+          pickers = {
+            find_files = {
+              hidden = true,
+              no_ignore = false,
+            },
+          }
         },
       }
     end
