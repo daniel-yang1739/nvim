@@ -23,18 +23,18 @@ return {
             hide_on_startup = true,
           },
           file_ignore_patterns = {
+            "node_modules",
+            "__pycache__",
             "lib/materializecss",
             "lib/*-dist",
           },
         },
         pickers = {
-          pickers = {
-            find_files = {
-              hidden = true,
-              no_ignore = false,
-            },
-          }
-        },
+          find_files = {
+            hidden = false,
+            no_ignore = false,
+          },
+        }
       }
     end
   },
