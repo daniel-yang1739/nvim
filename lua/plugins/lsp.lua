@@ -17,7 +17,7 @@ return {
     config = function()
       require("mason-lspconfig").setup({
         ensure_installed = {
-          "pyright",        -- Python
+          "pylsp",          -- Python
           "ts_ls",          -- TS/JS
           "html",           -- Angular template
           "jsonls",         -- JSON
@@ -32,11 +32,20 @@ return {
     "neovim/nvim-lspconfig",
     config = function()
       local lspconfig = require("lspconfig")
-      lspconfig.pyright.setup({})
+      lspconfig.pylsp.setup({
+        settings = {
+          pylsp = {
+            plugins = {
+              flake8 = { enabled = true },         -- Enable flake8
+            },
+          },
+        },
+      })
       lspconfig.ts_ls.setup({})
       lspconfig.html.setup({})
       lspconfig.jsonls.setup({})
 
+      --[[
       vim.api.nvim_create_autocmd("BufWritePre", {
         group = vim.api.nvim_create_augroup("LspFormatOnSave", { clear = true }),
         pattern = { "*.ts", "*.js", "*.py", "*.json", "*.html" },
@@ -44,6 +53,7 @@ return {
           vim.lsp.buf.format({ async = false })
         end,
       })
+      ]]--
     end,
   },
 
@@ -57,13 +67,13 @@ return {
         sources = {
           -- JavaScript / TypeScript / JSON / Angular
           null_ls.builtins.formatting.prettier,
+          -- Python import sorter
+          null_ls.builtins.formatting.isort.with({
+            extra_args = { "--force-single-line-imports" }
+          }),
           -- Python formatter
           null_ls.builtins.formatting.black.with({
             extra_args = { "--line-length", "79" }
-          }),
-          -- Python import sorter
-          null_ls.builtins.formatting.isort.with({
-            extra_args = { "--profile", "black" }
           }),
         },
       })

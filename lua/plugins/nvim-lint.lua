@@ -1,4 +1,5 @@
 return {
+  --[[
   'mfussenegger/nvim-lint',
   opts = {
     events = { 'BufWritePost', 'BufReadPost', 'InsertLeave' },
@@ -76,4 +77,5 @@ return {
       callback = M.debounce(100, M.lint),
     })
   end,
+  ]]--
 }
