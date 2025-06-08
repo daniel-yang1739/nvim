@@ -20,9 +20,9 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 vim.api.nvim_create_autocmd("FileType", {
-  pattern = { "html", "css", "js", "ts", "scss", "pug" },
+  pattern = { "html", "htmldjango", "css", "js", "ts", "scss", "pug" },
   callback = function()
-    vim.opt.shiftwidth = 2
-    vim.opt.tabstop = 2
+    vim.bo.shiftwidth = 2
+    vim.bo.tabstop = 2
   end,
 })
