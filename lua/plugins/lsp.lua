@@ -65,7 +65,7 @@ return {
       local null_ls = require("null-ls")
       local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 
-      -- use local vent bin if exists
+      -- Use local venv bin if exists
       local fs = vim.loop.fs_stat
       local function find_venv_bin(executable)
         local venv_path = ".venv/bin/" .. executable
