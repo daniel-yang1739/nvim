@@ -41,11 +41,33 @@ return {
     config = function()
       local opts = {
         provider = "copilot",
-        copilot = {
-          -- https://github.com/yetone/avante.nvim?tab=readme-ov-file#disable-tools
-          disable_tools = true,
+        providers = {
+          openai = {
+            endpoint = "https://api.openai.com/v1",
+            model = "gpt-4o",
+            timeout = 30000, -- Timeout in milliseconds, increase this for reasoning models
+            extra_request_body = {
+              temperature = 0,
+              max_completion_tokens = 8192, -- Increase this to include reasoning tokens (for reasoning models)
+              reasoning_effort = "medium", -- low|medium|high, only used for reasoning models
+            },
+          },
+          copilot = {
+            -- https://github.com/yetone/avante.nvim?tab=readme-ov-file#disable-tools
+            disable_tools = true,
+          },
+        },
+        mappings = {
+          sidebar = {
+            close = { "<Esc>", "q" },
+            close_from_input = {
+              normal = "<Esc>",
+              insert = "<C-d>"
+            }
+          },
         },
         windows = {
+          width = 40,
           input ={
             prefix = "",
             height = 6,
