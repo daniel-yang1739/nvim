@@ -4,6 +4,17 @@ return {
     "williamboman/mason.nvim",
     build = ":MasonUpdate",
     config = true,
+    opts = {
+      ensure_installed = {
+        "prettier",       -- JS/TS Formatter
+        "isort",          -- Python Import Sorter
+        "yapf",           -- Python Formatter
+        "shellcheck",     -- Shell Linter
+        "hadolint",       -- Haskell Linter
+        "luacheck",       -- Lua Linter
+      },
+      automatic_installation = true,
+    },
   },
 
   -- LSP Installer
@@ -19,8 +30,6 @@ return {
         ensure_installed = {
           "pylsp",          -- Python
           "ts_ls",          -- TS/JS
-          "html",           -- Angular template
-          "jsonls",         -- JSON
         },
         automatic_installation = true,
       })
@@ -52,18 +61,21 @@ return {
       lspconfig.ts_ls.setup({
         on_attach = on_attach,
       })
-      -- lspconfig.html.setup({})
-      -- lspconfig.jsonls.setup({})
     end,
   },
 
   -- Formatter / Linter
   {
     "nvimtools/none-ls.nvim",
-    dependencies = { "williamboman/mason.nvim" },
+    dependencies = {
+      "williamboman/mason.nvim",
+      "gbprod/none-ls-shellcheck.nvim",
+      "gbprod/none-ls-luacheck.nvim",
+    },
     config = function()
       local null_ls = require("null-ls")
       local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
+      local mason_path = vim.fn.stdpath("data") .. "/mason/bin"
 
       -- Use local venv bin if exists
       local fs = vim.loop.fs_stat
@@ -94,12 +106,23 @@ return {
           null_ls.builtins.formatting.isort.with({
             condition = has_format_config("pyproject.toml"),
             command = find_venv_bin("isort") or "isort",
-            extra_args = { "--force-single-line-imports" }
           }),
           -- Python formatter
           null_ls.builtins.formatting.yapf.with({
             condition = has_format_config("pyproject.toml"),
             command = find_venv_bin("yapf") or "yapf",
+          }),
+          -- Dockerfile linter
+          null_ls.builtins.diagnostics.hadolint.with({
+            command = mason_path .. "/hadolint",
+          }),
+          -- Shell linter
+          require("none-ls-shellcheck.diagnostics").with({
+            command = mason_path .. "/shellcheck",
+          }),
+          -- Lua linter
+          require("none-ls-luacheck.diagnostics.luacheck").with({
+            command = mason_path .. "/luacheck",
           }),
         },
         on_attach = function(client, bufnr)
