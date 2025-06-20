@@ -29,12 +29,6 @@ return {
             "lib/*-dist",
           },
         },
-        pickers = {
-          find_files = {
-            hidden = false,
-            no_ignore = false,
-          },
-        }
       }
     end
   },
