@@ -71,7 +71,7 @@ return {
   -- LSP Installer
   {
     "williamboman/mason-lspconfig.nvim",
-    version = "1.32.0",
+    version = "1.32.0",  -- for Failed: attempt to call field 'enable'
     dependencies = {
       "williamboman/mason.nvim",
       "neovim/nvim-lspconfig",

@@ -1,6 +1,7 @@
 return {
   {
     'derektata/lorem.nvim',
+    cmd = { "LoremIpsum" },
     config = function()
       require('lorem').opts {
         sentence_length = "medium",
