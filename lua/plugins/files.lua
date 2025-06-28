@@ -32,29 +32,4 @@ return {
       }
     end
   },
-  {
-    --[[
-    -- File Explorer --
-    "nvim-tree/nvim-tree.lua",
-    version = "*",
-    lazy = false,
-    dependencies = {
-      "nvim-tree/nvim-web-devicons",
-    },
-    init = function()
-      local keymap = vim.api.nvim_set_keymap
-      local opts = { noremap = true, silent = true }
-      keymap('n', '<leader>n', '<cmd>NvimTreeToggle<cr>', opts)
-    end,
-    config = function()
-      require("nvim-tree").setup({
-        actions = {
-          open_file = {
-            quit_on_open = true,
-          },
-        },
-      })
-    end,
-    ]]--
-  },
 }
