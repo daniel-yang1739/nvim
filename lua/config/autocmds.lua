@@ -3,7 +3,7 @@
 -- Add any additional autocmds here
 
 -- Language Settings --
-vim.cmd("language en_US")
+vim.cmd("language en_US.UTF-8")
 
 -- auto remove trailing whitespace on save --
 vim.api.nvim_create_autocmd("BufWritePre", {

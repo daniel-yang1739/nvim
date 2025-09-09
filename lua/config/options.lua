@@ -20,7 +20,7 @@ option.ignorecase = true
 option.mouse = ""
 option.number = true
 option.relativenumber = true
-option.scrolloff = 4
+option.scrolloff = 12
 option.shiftround = true
 option.shiftwidth = 4
 option.showmode = false
@@ -37,4 +37,4 @@ option.wildmenu = true
 option.wrap = true
 
 -- Buffer Settings --
-buffer.fileenconding = "utf-8"
+buffer.fileencoding = "utf-8"
