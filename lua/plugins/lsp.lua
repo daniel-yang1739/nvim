@@ -183,7 +183,7 @@ return {
               group = augroup,
               buffer = bufnr,
               callback = function()
-                vim.lsp.buf.format({ bufnr = bufnr, async = false })
+                vim.lsp.buf.format({ bufnr = bufnr, timeout_ms = 2000 })
               end,
             })
           end
