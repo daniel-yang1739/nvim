@@ -24,7 +24,7 @@ return {
           "yapf",        -- Python Formatter
           "shellcheck",  -- Shell Linter
           "hadolint",    -- Docker/Haskell Linter
-          "luacheck",    -- Lua Linter
+          -- "luacheck",    -- Lua Linter
         },
         -- if set to true this will check each tool for updates. If updates
         -- are available the tool will be updated. This setting does not
@@ -171,10 +171,13 @@ return {
           require("none-ls-shellcheck.diagnostics").with({
             command = mason_path .. "/shellcheck",
           }),
+
           -- Lua linter
+          --[[
           require("none-ls-luacheck.diagnostics.luacheck").with({
             command = mason_path .. "/luacheck",
           }),
+          --]]
         },
         on_attach = function(client, bufnr)
           if client.supports_method("textDocument/formatting") then
