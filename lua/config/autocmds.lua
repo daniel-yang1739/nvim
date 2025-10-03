@@ -12,17 +12,9 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 })
 
 vim.api.nvim_create_autocmd("FileType", {
-  pattern = "lua",
+  pattern = { "python" },
   callback = function()
-    vim.opt.shiftwidth = 2
-    vim.opt.tabstop = 2
-  end,
-})
-
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = { "html", "htmldjango", "css", "js", "ts", "scss", "pug" },
-  callback = function()
-    vim.bo.shiftwidth = 2
-    vim.bo.tabstop = 2
+    vim.bo.shiftwidth = 4
+    vim.bo.tabstop = 4
   end,
 })
