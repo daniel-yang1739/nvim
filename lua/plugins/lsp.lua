@@ -151,7 +151,7 @@ return {
           -- JavaScript / TypeScript / JSON / Angular
           null_ls.builtins.formatting.prettier.with({
             condition = has_format_config(".prettierrc"),
-            prefer_local = "node_modules/.bin",
+            prefer_local = "node_modules/.bin/prettier",
           }),
           -- Python import sorter
           null_ls.builtins.formatting.isort.with({
