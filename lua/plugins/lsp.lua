@@ -79,7 +79,7 @@ return {
     config = function()
       require("mason-lspconfig").setup({
         ensure_installed = {
-          "pylsp",          -- Python
+          -- "pylsp",          -- Python
           "ts_ls",          -- TS/JS
         },
         automatic_installation = true,
