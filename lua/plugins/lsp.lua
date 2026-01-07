@@ -24,6 +24,7 @@ return {
           "yapf",        -- Python Formatter
           "shellcheck",  -- Shell Linter
           "hadolint",    -- Docker/Haskell Linter
+          "golangci-lint"  -- Golang Linter
           -- "luacheck",    -- Lua Linter
         },
         -- if set to true this will check each tool for updates. If updates
@@ -81,6 +82,7 @@ return {
         ensure_installed = {
           -- "pylsp",          -- Python
           "ts_ls",          -- TS/JS
+          "gopls",
         },
         automatic_installation = true,
       })
@@ -96,7 +98,17 @@ return {
         local opts = { noremap = true, silent = true, buffer = bufnr }
         vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
         vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
+        vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, opts)
       end
+
+      vim.diagnostic.config({
+        virtual_text = { prefix = "●" },
+        signs = true,
+        underline = true,
+        update_in_insert = false,
+        severity_sort = true,
+        float = { border = "rounded", source = "always" },
+      })
 
       lspconfig.pylsp.setup({
         on_attach = on_attach,
@@ -111,6 +123,16 @@ return {
 
       lspconfig.ts_ls.setup({
         on_attach = on_attach,
+      })
+
+      lspconfig.gopls.setup({
+        on_attach = on_attach,
+        settings = {
+          gopls = {
+            analyses = { unusedparams = true },
+            staticcheck = true,
+          },
+        },
       })
     end,
   },
@@ -140,9 +162,15 @@ return {
 
       -- Check formatter config file exists in project root
       local utils = require("null-ls.utils")
-      local function has_format_config(filename)
+      local function has_config_file(filenames)
         return function()
-          return vim.fn.filereadable(utils.get_root() .. "/" .. filename) == 1
+          root = utils.get_root()
+          for _, filename in ipairs(filenames) do
+            if vim.fn.filereadable(utils.get_root() .. "/" .. filename) == 1 then
+              return true
+            end
+          end
+          return false
         end
       end
 
@@ -150,17 +178,17 @@ return {
         sources = {
           -- JavaScript / TypeScript / JSON / Angular
           null_ls.builtins.formatting.prettier.with({
-            condition = has_format_config(".prettierrc"),
+            condition = has_config_file({ ".prettierrc" }),
             prefer_local = "node_modules/.bin/prettier",
           }),
           -- Python import sorter
           null_ls.builtins.formatting.isort.with({
-            condition = has_format_config("pyproject.toml"),
+            condition = has_config_file({ "pyproject.toml" }),
             command = find_venv_bin("isort") or "isort",
           }),
           -- Python formatter
           null_ls.builtins.formatting.yapf.with({
-            condition = has_format_config("pyproject.toml"),
+            condition = has_config_file({ "pyproject.toml" }),
             command = find_venv_bin("yapf") or "yapf",
           }),
           -- Dockerfile linter
@@ -178,6 +206,12 @@ return {
             command = mason_path .. "/luacheck",
           }),
           --]]
+
+          -- Golang Linter
+          null_ls.builtins.diagnostics.golangci_lint.with({
+            command = mason_path .. "/golangci-lint",
+            method = null_ls.methods.DIAGNOSTICS_ON_SAVE,
+          }),
         },
         on_attach = function(client, bufnr)
           if client.supports_method("textDocument/formatting") then

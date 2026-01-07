@@ -12,7 +12,7 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 })
 
 vim.api.nvim_create_autocmd("FileType", {
-  pattern = { "python" },
+  pattern = { "python", "go" },
   callback = function()
     vim.bo.shiftwidth = 4
     vim.bo.tabstop = 4
