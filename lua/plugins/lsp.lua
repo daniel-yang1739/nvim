@@ -24,8 +24,9 @@ return {
           "yapf",        -- Python Formatter
           "shellcheck",  -- Shell Linter
           "hadolint",    -- Docker/Haskell Linter
-          "golangci-lint"  -- Golang Linter
+          "golangci-lint",  -- Golang Linter
           -- "luacheck",    -- Lua Linter
+          "kube-linter", -- Kubernetes / Helm
         },
         -- if set to true this will check each tool for updates. If updates
         -- are available the tool will be updated. This setting does not
@@ -89,17 +90,20 @@ return {
     end,
   },
 
-  -- LSP Configuration
+  -- LSP Configuration (Neovim 0.11+)
   {
     "neovim/nvim-lspconfig",
     config = function()
-      local lspconfig = require("lspconfig")
-      local on_attach = function(_, bufnr)
-        local opts = { noremap = true, silent = true, buffer = bufnr }
-        vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
-        vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
-        vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, opts)
-      end
+      vim.api.nvim_create_autocmd("LspAttach", {
+        callback = function(args)
+          local bufnr = args.buf
+          local opts = { noremap = true, silent = true, buffer = bufnr }
+
+          vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
+          vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
+          vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, opts)
+        end,
+      })
 
       vim.diagnostic.config({
         virtual_text = { prefix = "●" },
@@ -110,30 +114,33 @@ return {
         float = { border = "rounded", source = "always" },
       })
 
-      lspconfig.pylsp.setup({
-        on_attach = on_attach,
+      -- Python (pylsp)
+      vim.lsp.config.pylsp = {
         settings = {
           pylsp = {
             plugins = {
-              flake8 = { enabled = true },         -- Enable flake8
+              flake8 = { enabled = true },
             },
           },
         },
-      })
+      }
 
-      lspconfig.ts_ls.setup({
-        on_attach = on_attach,
-      })
+      -- TypeScript (ts_ls)
+      vim.lsp.config.ts_ls = {}
 
-      lspconfig.gopls.setup({
-        on_attach = on_attach,
+      -- Golang (gopls)
+      vim.lsp.config.gopls = {
         settings = {
           gopls = {
             analyses = { unusedparams = true },
             staticcheck = true,
           },
         },
-      })
+      }
+
+      vim.lsp.enable("pylsp")
+      vim.lsp.enable("ts_ls")
+      vim.lsp.enable("gopls")
     end,
   },
 
@@ -147,6 +154,7 @@ return {
     },
     config = function()
       local null_ls = require("null-ls")
+      local helpers = require("null-ls.helpers")
       local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
       local mason_path = vim.fn.stdpath("data") .. "/mason/bin"
 
@@ -211,6 +219,11 @@ return {
           null_ls.builtins.diagnostics.golangci_lint.with({
             command = mason_path .. "/golangci-lint",
             method = null_ls.methods.DIAGNOSTICS_ON_SAVE,
+          }),
+
+          -- Kubernetes Linter
+          null_ls.builtins.diagnostics.kube_linter.with({
+            command = mason_path .. "/kube-linter",
           }),
         },
         on_attach = function(client, bufnr)
