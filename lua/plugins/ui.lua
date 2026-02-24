@@ -48,4 +48,19 @@ return {
       })
     end,
   },
+  {
+  "MeanderingProgrammer/render-markdown.nvim",
+    dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-mini/mini.nvim' },
+    ft = { "markdown", "Avante", "copilot-chat", "opencode_output" },
+    opts = {
+      preset = 'mini',
+      enabled = false,
+      anti_conceal = { enabled = false },
+      code = { sign = false },
+    },
+    config = function(_, opts)
+      require("render-markdown").setup(opts)
+      vim.keymap.set("n", "<leader>m", ":RenderMarkdown toggle<CR>", { silent = true, desc = "Toggle Markdown Render" })
+    end,
+  },
 }

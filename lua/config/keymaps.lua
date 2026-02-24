@@ -25,3 +25,7 @@ keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
 keymap.set("n", "H", "gT")
 keymap.set("n", "L", "gt")
+
+keymap.set("n", "<leader>ex", "<cmd>Ex<CR>",  { desc = "Project View" })
+keymap.set("n", "<leader>ve", "<cmd>Vex<CR>", { desc = "Vertical Split Project View" })
+keymap.set("n", "<leader>se", "<cmd>Sex<CR>", { desc = "Horizontal Split Project View" })
