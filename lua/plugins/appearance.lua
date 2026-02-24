@@ -50,10 +50,13 @@ return {
   },
   {
   "MeanderingProgrammer/render-markdown.nvim",
-    dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-mini/mini.nvim' },
+    dependencies = {
+      'nvim-treesitter/nvim-treesitter',
+      'nvim-tree/nvim-web-devicons'
+    },
     ft = { "markdown", "Avante", "copilot-chat", "opencode_output" },
     opts = {
-      preset = 'mini',
+      preset = 'obsidian',
       enabled = false,
       anti_conceal = { enabled = false },
       code = { sign = false },
