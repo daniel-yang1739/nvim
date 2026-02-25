@@ -59,21 +59,5 @@ return {
         end
       })
     end,
-  },
-  {
-    "nvim-treesitter/nvim-treesitter",
-    lazy = false,
-    build = ":TSUpdate",
-    opts = {
-      ensure_installed = {
-        "python", "angular", "javascript", "typescript", "html",
-        "css", "json", "bash", "yaml", "markdown",
-        "dockerfile", "cpp", "java", "lua", "vim", "vimdoc", "go"
-      },
-      sync_install = false,
-      auto_install = true,
-      highlight = { enable = true, },
-      intent = { enable = true, },
-    },
   }
 }
