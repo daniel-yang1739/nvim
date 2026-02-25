@@ -62,6 +62,7 @@ return {
   },
   {
     "nvim-treesitter/nvim-treesitter",
+    lazy = false,
     build = ":TSUpdate",
     opts = {
       ensure_installed = {
@@ -71,9 +72,8 @@ return {
       },
       sync_install = false,
       auto_install = true,
-      highlight = {
-        enable = true,
-      },
+      highlight = { enable = true, },
+      intent = { enable = true, },
     },
   }
 }
