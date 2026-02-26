@@ -81,7 +81,7 @@ return {
     config = function()
       require("mason-lspconfig").setup({
         ensure_installed = {
-          -- "pylsp",          -- Python
+          "pylsp",          -- Python
           "ts_ls",          -- TS/JS
           "gopls",
         },
@@ -120,6 +120,8 @@ return {
           pylsp = {
             plugins = {
               flake8 = { enabled = true },
+              pyls_isort = { enabled = true},
+              yapf = { enabled = true },
             },
           },
         },
@@ -189,20 +191,24 @@ return {
             condition = has_config_file({ ".prettierrc" }),
             prefer_local = "node_modules/.bin/prettier",
           }),
+
           -- Python import sorter
           null_ls.builtins.formatting.isort.with({
-            condition = has_config_file({ "pyproject.toml" }),
+            -- condition = has_config_file({ "pyproject.toml" }),
             command = find_venv_bin("isort") or "isort",
           }),
+
           -- Python formatter
           null_ls.builtins.formatting.yapf.with({
             condition = has_config_file({ "pyproject.toml" }),
             command = find_venv_bin("yapf") or "yapf",
           }),
+
           -- Dockerfile linter
           null_ls.builtins.diagnostics.hadolint.with({
             command = mason_path .. "/hadolint",
           }),
+
           -- Shell linter
           require("none-ls-shellcheck.diagnostics").with({
             command = mason_path .. "/shellcheck",
