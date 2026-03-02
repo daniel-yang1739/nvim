@@ -9,7 +9,8 @@ return {
     keys = {
       { "<C-p>", "<cmd>Telescope find_files<cr>", desc = "find files" },
       { "<leader>p", "<cmd>Telescope find_files<cr>", desc = "find files" },
-      { "<leader>o", "<cmd>Telescope live_grep<cr>", desc = "live grep" }
+      { "<leader>o", "<cmd>Telescope live_grep<cr>", desc = "live grep" },
+      { "<leader>k", "<cmd>Telescope keymaps<cr>", desc = "keymaps" }
     },
     opts = function()
       return {
