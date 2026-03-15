@@ -87,7 +87,7 @@ return {
       local langs = {
         "python", "angular", "javascript", "typescript", "html",
         "css", "json", "bash", "yaml", "markdown",
-        "dockerfile", "cpp", "java", "lua", "vim", "vimdoc", "go"
+        "dockerfile", "cpp", "java", "lua", "vim", "vimdoc", "go", "robot"
       }
 
       require('nvim-treesitter').install(langs)

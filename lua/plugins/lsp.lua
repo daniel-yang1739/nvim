@@ -84,6 +84,7 @@ return {
           "pylsp",          -- Python
           "ts_ls",          -- TS/JS
           "gopls",
+          "robotframework_ls",
         },
         automatic_installation = true,
       })
