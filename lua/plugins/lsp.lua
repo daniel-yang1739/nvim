@@ -121,8 +121,8 @@ return {
           pylsp = {
             plugins = {
               flake8 = { enabled = true },
-              pyls_isort = { enabled = true},
-              yapf = { enabled = true },
+              -- pyls_isort = { enabled = true},
+              -- yapf = { enabled = true },
             },
           },
         },
@@ -188,22 +188,28 @@ return {
       null_ls.setup({
         sources = {
           -- JavaScript / TypeScript / JSON / Angular
+          --[[
           null_ls.builtins.formatting.prettier.with({
             condition = has_config_file({ ".prettierrc" }),
             prefer_local = "node_modules/.bin/prettier",
           }),
+          --]]
 
           -- Python import sorter
+          --[[
           null_ls.builtins.formatting.isort.with({
             -- condition = has_config_file({ "pyproject.toml" }),
             command = find_venv_bin("isort") or "isort",
           }),
+          --]]
 
           -- Python formatter
+          --[[
           null_ls.builtins.formatting.yapf.with({
             condition = has_config_file({ "pyproject.toml" }),
             command = find_venv_bin("yapf") or "yapf",
           }),
+          --]]
 
           -- Dockerfile linter
           null_ls.builtins.diagnostics.hadolint.with({
