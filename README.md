@@ -15,19 +15,44 @@ Ensure you have the following installed on your system:
 - **Tree-sitter** (for syntax parsing)
 - **Tree-sitter CLI** (for installing and compiling language parsers)
 - **Ripgrep** (for Telescope searching; install with Homebrew)
-- **Build Essentials**:
-  ```bash
-  sudo apt install -y libffi-dev libssl-dev liblzma-dev libreadline-dev libsqlite3-dev zlib1g-dev tk-dev libbz2-dev libncursesw5-dev build-essential
-  ```
 
-On macOS, install Homebrew first if it is not already installed, then install the
-Tree-sitter tools and Ripgrep:
+#### macOS
+
+Install [Homebrew](https://brew.sh/) first if it is not already installed. Then
+install the dependencies and build tools:
 
 ```bash
-brew install tree-sitter tree-sitter-cli ripgrep
+brew install tree-sitter tree-sitter-cli ripgrep openssl readline sqlite3 xz zlib tcl-tk bzip2 ncurses libffi
+xcode-select --install
 ```
 
-Verify the installations:
+macOS does not need GCC or Make from Homebrew. Xcode Command Line Tools provides
+the native `clang` and `make` toolchain.
+
+#### Debian / Ubuntu Linux
+
+Install the equivalent development packages with `apt`:
+
+```bash
+sudo apt install -y libffi-dev libssl-dev liblzma-dev libreadline-dev libsqlite3-dev zlib1g-dev tk-dev libbz2-dev libncursesw5-dev build-essential
+```
+
+The package names differ between Linux and macOS. The main equivalents are:
+
+| Debian / Ubuntu (`apt`) | macOS (Homebrew / system) | Purpose |
+| --- | --- | --- |
+| `build-essential` | `xcode-select --install` | C/C++ compiler and build tools (`clang`, `make`) |
+| `libssl-dev` | `openssl` | SSL/TLS support |
+| `libreadline-dev` | `readline` | Interactive terminal history and editing |
+| `libsqlite3-dev` | `sqlite3` | SQLite database support |
+| `liblzma-dev` | `xz` | LZMA / XZ compression |
+| `zlib1g-dev` | `zlib` | Zlib compression |
+| `tk-dev` | `tcl-tk` | Tkinter GUI support |
+| `libbz2-dev` | `bzip2` | Bzip2 compression |
+| `libncursesw5-dev` | `ncurses` | Terminal UI control |
+| `libffi-dev` | `libffi` | Foreign function interface support (`ctypes`) |
+
+Verify the main command-line tools:
 
 ```bash
 tree-sitter --version
