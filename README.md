@@ -12,11 +12,27 @@ Ensure you have the following installed on your system:
 - **Node.js & npm** (for LSP)
 - **Go** (for Go LSP and tools)
 - **Python 3 & pip** (for Python LSP and tools)
-- **Ripgrep** (for Telescope searching)
+- **Tree-sitter** (for syntax parsing)
+- **Tree-sitter CLI** (for installing and compiling language parsers)
+- **Ripgrep** (for Telescope searching; install with Homebrew)
 - **Build Essentials**:
   ```bash
   sudo apt install -y libffi-dev libssl-dev liblzma-dev libreadline-dev libsqlite3-dev zlib1g-dev tk-dev libbz2-dev libncursesw5-dev build-essential
   ```
+
+On macOS, install Homebrew first if it is not already installed, then install the
+Tree-sitter tools and Ripgrep:
+
+```bash
+brew install tree-sitter tree-sitter-cli ripgrep
+```
+
+Verify the installations:
+
+```bash
+tree-sitter --version
+rg --version
+```
 
 ### 2. Setup Locale
 If your system does not have `en_US.UTF-8`, set it up to avoid encoding issues:
