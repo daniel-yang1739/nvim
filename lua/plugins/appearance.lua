@@ -66,7 +66,7 @@ return {
       'nvim-treesitter/nvim-treesitter',
       'nvim-tree/nvim-web-devicons'
     },
-    ft = { "markdown", "Avante", "copilot-chat", "opencode_output" },
+    ft = { "llm", "markdown" },
     opts = {
       preset = 'obsidian',
       enabled = false,

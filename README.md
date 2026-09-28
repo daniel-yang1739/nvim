@@ -9,7 +9,7 @@ A modular, high-performance Neovim configuration built with `lazy.nvim`, featuri
 Ensure you have the following installed on your system:
 
 - **Neovim** (v0.10+ recommended)
-- **Node.js & npm** (for LSP and Copilot)
+- **Node.js & npm** (for LSP)
 - **Go** (for Go LSP and tools)
 - **Python 3 & pip** (for Python LSP and tools)
 - **Ripgrep** (for Telescope searching)
@@ -43,7 +43,7 @@ Launch Neovim, and `lazy.nvim` will automatically install the plugins.
 - **Auto-Formatting**: Integrated with `none-ls.nvim`.
   - **Prettier**: Runs if `.prettierrc` is present.
   - **Python (isort/yapf)**: Runs if `pyproject.toml` is present (supports `.venv` detection).
-- **AI-Powered**: GitHub Copilot integration with custom shortcuts.
+- **LLM Chat**: GitHub Models chat through `llm.nvim`.
 - **Terminal**: Integrated floating terminal via `toggleterm.nvim`.
 - **Navigation**: 
   - **Telescope**: Powerful fuzzy finding for files and grep.
@@ -77,15 +77,32 @@ The **Leader Key** is set to `,` (comma).
 | `<leader>e` | Show Diagnostics (Float) |
 | `<C-\>` | Toggle Floating Terminal |
 | `<leader>gs` | Git Status |
+| `<leader>ac` | Toggle LLM Chat |
+| `<leader>ae` (Visual) | Explain selected code |
+| `<leader>aa` (Normal/Visual) | Ask about code or buffer |
 
-### Copilot
-| Shortcut | Description |
-|----------|-------------|
-| `Alt + Tab` | Accept Suggestion |
-| `Alt + w` | Accept Word |
-| `Alt + l` | Accept Line |
+### LLM Setup
 
----
+`llm.nvim` reads provider credentials from `.env`. Copy `.env.example` to `.env` and replace the placeholder values:
+
+```sh
+cp .env.example .env
+```
+
+`.env` is ignored by Git. Only `LLM_<PROVIDER>_API` and `LLM_<PROVIDER>_KEY` variables for providers configured in `lua/plugins/llm.lua` are loaded. The configured endpoint must use the OpenAI-compatible Chat Completions format.
+
+The current provider is Trend Micro RDSec. Configure its credentials in `.env`:
+
+```env
+LLM_TREND_MICRO_API=your-complete-api-endpoint
+LLM_TREND_MICRO_KEY=your-trend-micro-api-token
+```
+
+`llm.nvim` sends requests to `LLM_TREND_MICRO_API` directly. For an OpenAI-compatible provider that gives a base URL, append `/chat/completions`.
+
+Models are configured in `lua/plugins/llm.lua`. The Lua provider key does not need to match the environment variable prefix. Models under the same provider share its endpoint and API key; press `Ctrl-m` in the chat window to switch between them.
+
+In Visual mode, press `<leader>ae` to explain selected code. Press `<leader>aa` to ask about selected code, or in Normal mode to use the current buffer as context. In the Ask window, press `Ctrl-g` to submit, `d` to show a diff, `y`/`Y` to accept, `n`/`N` to reject, and `Esc` to close.
 
 ## 📂 Project Structure
 

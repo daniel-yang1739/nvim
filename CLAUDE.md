@@ -34,10 +34,8 @@ This is a Neovim configuration repository using the lazy.nvim plugin manager. Th
 - none-ls.nvim provides formatting/linting integration with auto-format on save
 
 ### Development Tools
-- Copilot integration with enhanced keybindings (`lua/plugins/copilot.lua`)
-  - Alt+Tab: Accept suggestion
-  - Alt+w: Accept word
-  - Alt+l: Accept line
+- LLM chat via `llm.nvim`, using provider credentials from `.env` (`LLM_<PROVIDER>_API` and `LLM_<PROVIDER>_KEY`); provider env prefixes are defined explicitly in `lua/plugins/llm.lua`
+  - `<leader>ac`: Toggle the chat session
 - Terminal integration via toggleterm.nvim with floating terminal (Ctrl+\)
   - Floating window with curved borders (120x35 dimensions)
   - Transparency and styled borders
@@ -97,13 +95,6 @@ gr                 # Show references (LSP)
 <leader>y          # Copy to system clipboard (visual mode)
 <leader>'          # Wrap word/selection in single quotes
 <leader>"          # Wrap word/selection in double quotes
-```
-
-### Copilot Commands
-```
-<A-Tab>            # Accept Copilot suggestion
-<A-w>              # Accept word from Copilot
-<A-l>              # Accept line from Copilot
 ```
 
 ### Utility Commands
