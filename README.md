@@ -60,7 +60,32 @@ rg --version
 ```
 
 ### 2. Setup Locale
-If your system does not have `en_US.UTF-8`, set it up to avoid encoding issues:
+
+#### macOS
+
+macOS includes common UTF-8 locales by default, so it does not provide or
+require Debian / Ubuntu's `locale-gen` and `update-locale` commands. Check the
+available locale and the current settings:
+
+```bash
+locale -a | grep -i "en_US.utf"
+locale
+```
+
+If needed, add the locale environment variables to `~/.zshrc`:
+
+```bash
+echo 'export LANG=en_US.UTF-8' >> ~/.zshrc
+echo 'export LC_ALL=en_US.UTF-8' >> ~/.zshrc
+source ~/.zshrc
+locale
+```
+
+#### Debian / Ubuntu Linux
+
+If your system does not have `en_US.UTF-8`, generate it and set it as the
+default locale:
+
 ```bash
 sudo locale-gen en_US.UTF-8
 sudo update-locale LANG=en_US.UTF-8
